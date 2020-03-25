@@ -7,11 +7,11 @@ const router = Router();
 
 router.post("/user", async (request, response, next) => {
   try {
-    const { name, password } = request.body;
+    const { email, password } = request.body;
 
     const scrambled = bcrypt.hashSync(password, 10);
 
-    const entity = { name, password: scrambled };
+    const entity = { email, password: scrambled };
 
     const user = await User.create(entity);
 
@@ -26,11 +26,7 @@ router.get("/user/:id"),
     try {
       const { id } = request.params;
 
-      const query = {
-        include: [Tickets, Comment]
-      };
-
-      const singleUser = await User.findByPk(id, query);
+      const singleUser = await User.findByPk(id);
       response.send(singleUser);
     } catch (eroor) {
       next(error);

@@ -3,6 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const spotifyRouter = require("./spotify/router");
+const createUserRouter = require("./createUser/router");
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(parserMiddleware);
 
 app.get("/", (req, res) => res.send());
 
-app.use(spotifyRouter);
+app.use(spotifyRouter).use(createUserRouter);
 
 const port = process.env.PORT || 4000;
 

@@ -43,15 +43,6 @@ const getValidAccessToken = async () => {
       }
     );
   }
-
-  // controle of expires_at verlopen is (is nu 0) check met moments
-  // nog geldig? return access_token
-
-  // niet meer geldig?
-  // maak call met spotify voor nieuw access token
-  // maak datum + expires_in van spotify
-  // sla die nieuwe datum + access_token op
-  // return access_token
 };
 
 module.exports = { spotifyToken, getValidAccessToken };

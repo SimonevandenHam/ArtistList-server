@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 const Artist = require("../addArtist/model");
+const User = require("../createUser/model");
 const Concert = require("./model");
 const auth = require("../userLogin/loginMiddelware");
 
@@ -27,7 +28,47 @@ router.post(
         newConcert.addArtist(dbArtist.id);
       });
 
+      //DO NEXT use actual user id of signed in user
+      const dbUser = await User.findByPk(1);
+      console.log(dbUser);
+      dbUser.addConcert(newConcert.id);
+
       response.send(newConcert);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.get(
+  "/concert/:concertId",
+  /*auth,*/ async (request, response, next) => {
+    try {
+      const { concertId } = request.params;
+
+      const query = {
+        include: [Artist]
+      };
+      const getConcert = await Concert.findByPk(concertId, query);
+      response.send(getConcert);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.get(
+  "/concerts/:userId",
+  /*auth,*/ async (request, response, next) => {
+    try {
+      const { userId } = request.params;
+
+      await Concert.findAll({
+        where: {
+          userId: userId
+        },
+        include: [User]
+      }).then(concerts => response.send(concerts));
     } catch (error) {
       next(error);
     }

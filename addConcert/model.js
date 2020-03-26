@@ -1,7 +1,9 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const addConcert = db.define(
+const AddArtist = require("../AddArtist/model");
+
+const AddConcert = db.define(
   "concert",
   {
     date: {
@@ -25,4 +27,7 @@ const addConcert = db.define(
     tableName: "concert"
   }
 );
-module.exports = addConcert;
+
+//RELATIONS
+
+module.exports = AddConcert;

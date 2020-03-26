@@ -25,4 +25,7 @@ const addConcert = db.define(
     tableName: "concert"
   }
 );
+
+//RELATIONS
+
 module.exports = addConcert;

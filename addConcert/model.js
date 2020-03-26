@@ -30,4 +30,6 @@ const AddConcert = db.define(
 
 //RELATIONS
 
+
 module.exports = AddConcert;
+

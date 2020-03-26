@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const db = require("../db");
 const moment = require("moment");
 const SpotifyWebApi = require("spotify-web-api-node");
+const clientSecret = require("./keys");
 
 const spotifyToken = db.define("spotifyToken", {
   expires_at: {
@@ -20,7 +21,7 @@ const getValidAccessToken = async () => {
     // Create the api object with the credentials
     const spotifyApi = new SpotifyWebApi({
       clientId: `3939a9d8a4f84057a149d1bd72e67e7c`,
-      clientSecret: `0e73ca0c5fe2406bbb983b88ee66cd16`
+      clientSecret
     });
 
     // Retrieve an access token.

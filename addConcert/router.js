@@ -75,4 +75,14 @@ router.get(
   }
 );
 
+router.delete("/concert/:concertId", (request, response, next) => {
+  try {
+    Concert.destroy({ where: { id: request.params.concertId } }).then(concert =>
+      response.send({ concert })
+    );
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

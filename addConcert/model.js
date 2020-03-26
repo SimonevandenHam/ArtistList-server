@@ -1,9 +1,10 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const AddArtist = require("../AddArtist/model");
+const Artist = require("../AddArtist/model");
+const User = require("../createUser/model");
 
-const AddConcert = db.define(
+const Concert = db.define(
   "concert",
   {
     date: {
@@ -29,5 +30,10 @@ const AddConcert = db.define(
 );
 
 //RELATIONS
+Artist.belongsTo(Concert);
+Concert.hasMany(Artist);
 
-module.exports = AddConcert;
+Concert.belongsTo(User);
+User.hasMany(Concert);
+
+module.exports = Concert;

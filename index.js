@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const spotifyRouter = require("./spotify/router");
 const createUserRouter = require("./createUser/router");
 const loginRouter = require("./userLogin/router");
-const artistRouter = require("./addArtist/router");
+const AddConcert = require("./addConcert/router");
 
 const app = express();
 
@@ -21,7 +21,7 @@ app
   .use(spotifyRouter)
   .use(createUserRouter)
   .use(loginRouter)
-  .use(artistRouter);
+  .use(AddConcert);
 
 const port = process.env.PORT || 4000;
 

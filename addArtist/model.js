@@ -1,11 +1,15 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const AddArist = db.define(
+const Arist = db.define(
   "artist",
   {
     artist: {
       type: Sequelize.STRING,
+      allowNull: false
+    },
+    spotifyArtistId: {
+      type: Sequelize.TEXT,
       allowNull: false
     }
   },
@@ -14,6 +18,4 @@ const AddArist = db.define(
   }
 );
 
-//RELATIONS
-
-module.exports = AddArist;
+module.exports = Arist;

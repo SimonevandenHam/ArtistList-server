@@ -8,14 +8,17 @@ const router = Router();
 router.post("/user", async (request, response, next) => {
   try {
     const { email, password } = request.body;
+    if (password === "") {
+      response.send({ error: "can not be empty" });
+    } else {
+      const scrambled = bcrypt.hashSync(password, 10);
 
-    const scrambled = bcrypt.hashSync(password, 10);
+      const entity = { email, password: scrambled };
 
-    const entity = { email, password: scrambled };
+      const user = await User.create(entity);
 
-    const user = await User.create(entity);
-
-    response.send(user);
+      response.send(user);
+    }
   } catch (error) {
     next(error);
   }

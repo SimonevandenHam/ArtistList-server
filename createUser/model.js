@@ -8,21 +8,13 @@ const User = db.define(
       type: Sequelize.TEXT,
       unique: true,
       allowNull: false,
-      isEmail: true,
-      notEmpty: true
+      validate: {
+        isEmail: true,
+        notEmpty: true
+      }
     },
     password: {
       type: Sequelize.TEXT,
-      validate: {
-        min: {
-          args: [6],
-          msg: "Your password must be at least 6 characters long"
-        },
-        max: {
-          args: [100],
-          msg: "Your password can only be 100 characters long"
-        }
-      },
       allowNull: false,
       notEmpty: true
     }

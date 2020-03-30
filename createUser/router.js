@@ -9,7 +9,9 @@ router.post("/user", async (request, response, next) => {
   try {
     const { email, password } = request.body;
     if (password === "") {
-      response.send({ error: "can not be empty" });
+      response.status(400).send({
+        message: "password can not be empty"
+      });
     } else {
       const scrambled = bcrypt.hashSync(password, 10);
 

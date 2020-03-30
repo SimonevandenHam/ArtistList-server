@@ -17,9 +17,13 @@ router.post("/user", async (request, response, next) => {
 
       const entity = { email, password: scrambled };
 
-      const user = await User.create(entity);
+      try {
+        const user = await User.create(entity);
 
-      response.send(user);
+        response.send(user);
+      } catch (error) {
+        response.send({ error: "values not valid" });
+      }
     }
   } catch (error) {
     next(error);

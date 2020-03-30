@@ -6,8 +6,7 @@ const User = db.define(
   {
     email: {
       type: Sequelize.STRING,
-      unique: true,
-      null: false
+      unique: true
     },
     password: {
       type: Sequelize.STRING,
@@ -19,8 +18,7 @@ const User = db.define(
         max: {
           args: [100],
           msg: "Your password can only be 100 characters long"
-        },
-        null: false
+        }
       }
     }
   },

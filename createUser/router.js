@@ -14,11 +14,8 @@ router.post("/user", async (request, response, next) => {
       });
     } else {
       const scrambled = bcrypt.hashSync(password, 10);
-
       const entity = { email, password: scrambled };
-
       const user = await User.create(entity);
-
       response.send(user);
     }
   } catch (error) {

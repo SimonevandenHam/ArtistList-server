@@ -15,10 +15,8 @@ router.post("/user", async (request, response, next) => {
     } else {
       const scrambled = bcrypt.hashSync(password, 10);
       const entity = { email, password: scrambled };
-<<<<<<< HEAD
       const user = await User.create(entity);
       response.send(user);
-=======
 
       try {
         const user = await User.create(entity);
@@ -27,7 +25,6 @@ router.post("/user", async (request, response, next) => {
       } catch (error) {
         response.send({ error: "values not valid" });
       }
->>>>>>> 5d4cbd46b09523e0c5ebe61daf2e5c42e221ad8e
     }
   } catch (error) {
     next(error);

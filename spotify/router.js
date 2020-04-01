@@ -34,16 +34,14 @@ router.get("/spotify/:artist", async (request, response, next) => {
 
     spotifyApi.searchArtists(artist).then(
       function(data) {
-        console.log(
-          "which artist info am i getting?",
-          data.body.artists.items.map(artist => {
-            return {
-              spotifyId: artist.id,
-              images: artist.images,
-              name: artist.name
-            };
-          })
-        );
+        const artistSearchResult = data.body.artists.items.map(artist => {
+          return {
+            spotifyArtistId: artist.id,
+            picture: artist.images,
+            artist: artist.name
+          };
+        });
+        response.send(artistSearchResult);
       },
       function(err) {
         console.log("Something went wrong!", err);

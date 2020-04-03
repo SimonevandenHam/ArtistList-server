@@ -49,15 +49,15 @@ router.get("/concert/:concertId", auth, async (request, response, next) => {
   }
 });
 
-router.get("/concerts/:userId", auth, async (request, response, next) => {
+router.get("/concerts/", auth, async (request, response, next) => {
   try {
-    const { userId } = request.params;
+    const userId = request.user.id;
 
     await Concert.findAll({
       where: {
         userId: userId
       },
-      include: [User]
+      include: [Artist]
     }).then(concerts => response.send(concerts));
   } catch (error) {
     next(error);

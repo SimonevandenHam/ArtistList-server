@@ -47,15 +47,9 @@ router.post("/login", (request, response) => {
 });
 
 router.get("/secret-endpoint", (request, response) => {
-  console.log(
-    "WHAT IS REQ.HEADERS.AUTHORIZATIOn",
-    request.headers.authorization
-  );
   // do we have req.headers.authorization && if so: split the header on a space
   const auth =
     request.headers.authorization && request.headers.authorization.split(" ");
-  console.log("SPLIT:", auth);
-
   // is auth something && is the first element a string "Bearer" && do we have a token
   if (auth && auth[0] === "Bearer" && auth[1]) {
     // verify the token and get me the information inside (toData(auth[1]))

@@ -16,13 +16,13 @@ router.post("/concert", auth, async (request, response, next) => {
 
     //creating, and remembering artistis
     let databaseArtists = await Promise.all(
-      request.body.artist.map(async artist => {
+      request.body.artist.map(async (artist) => {
         return await Artist.create(artist);
       })
     );
 
     //add artists to concert
-    databaseArtists.map(dbArtist => {
+    databaseArtists.map((dbArtist) => {
       newConcert.addArtist(dbArtist.id);
     });
 
@@ -40,7 +40,7 @@ router.get("/concert/:concertId", auth, async (request, response, next) => {
     const { concertId } = request.params;
 
     const query = {
-      include: [Artist]
+      include: [Artist],
     };
     const getConcert = await Concert.findByPk(concertId, query);
     response.send(getConcert);
@@ -55,10 +55,13 @@ router.get("/concerts/", auth, async (request, response, next) => {
 
     await Concert.findAll({
       where: {
-        userId: userId
+        userId: userId,
       },
-      include: [Artist]
-    }).then(concerts => response.send(concerts));
+      include: [Artist],
+    }).then((concerts) => {
+      console.log(concerts);
+      response.send(concerts);
+    });
   } catch (error) {
     next(error);
   }
@@ -66,9 +69,9 @@ router.get("/concerts/", auth, async (request, response, next) => {
 
 router.delete("/concert/:concertId", (request, response, next) => {
   try {
-    Concert.destroy({ where: { id: request.params.concertId } }).then(concert =>
-      response.send({ concert })
-    );
+    Concert.destroy({
+      where: { id: request.params.concertId },
+    }).then((concert) => response.send({ concert }));
   } catch (error) {
     next(error);
   }

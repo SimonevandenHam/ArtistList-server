@@ -6,15 +6,18 @@ const Arist = db.define(
   {
     artist: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     spotifyArtistId: {
       type: Sequelize.TEXT,
-      allowNull: false
-    }
+      allowNull: false,
+    },
+    artistPicture: {
+      type: Sequelize.TEXT,
+    },
   },
   {
-    tableName: "artist"
+    tableName: "artist",
   }
 );
 

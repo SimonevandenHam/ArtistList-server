@@ -15,6 +15,9 @@ const Arist = db.define(
     artistPicture: {
       type: Sequelize.TEXT,
     },
+    spotifyLink: {
+      type: Sequelize.TEXT,
+    },
   },
   {
     tableName: "artist",

@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const Artist = require("../AddArtist/model");
+const Artist = require("../addArtist/model");
 const User = require("../createUser/model");
 
 const Concert = db.define(
@@ -9,23 +9,23 @@ const Concert = db.define(
   {
     date: {
       type: Sequelize.DATEONLY,
-      allowNull: false
+      allowNull: false,
     },
     endDate: {
       type: Sequelize.DATEONLY,
-      allowNull: true
+      allowNull: true,
     },
     venue: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     location: {
       type: Sequelize.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
-    tableName: "concert"
+    tableName: "concert",
   }
 );
 

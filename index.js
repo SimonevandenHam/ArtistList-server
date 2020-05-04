@@ -19,7 +19,7 @@ app.get("/", (req, res) => res.send());
 
 app.use(spotifyRouter).use(createUserRouter).use(loginRouter).use(AddConcert);
 
-const port = process.env.PORT || 5432;
+const port = process.env.PORT || 4000;
 
 function confirm() {
   console.log(`Listening on :${port}`);
